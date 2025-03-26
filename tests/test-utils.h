@@ -2,8 +2,9 @@
 #define _TEST_UTILS_H
 
 #include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
-#include <../include/filecrypt.h>
+#include "../include/filecrypt.h"
 
 #define TEXT_SIZE 64
 #define KEY_SIZE 16
@@ -29,6 +30,9 @@ const byte core128Key[KEY_SIZE] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae,
 const byte iv[IV_SIZE] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
                           0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
 
+long printFailStatus(long value);
+char * fileNameMaker(uint8_t mode, uint16_t version, uint8_t isEncrypt, uint8_t fileType, long appendValue);
+void deleteWrittenFiles(uint8_t mode, uint16_t version, uint8_t fileType, size_t fileCount);
 
 
 #endif // _TEST_UTILS_H

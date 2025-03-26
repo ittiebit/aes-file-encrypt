@@ -5,11 +5,17 @@ file(COPY ${CMAKE_SOURCE_DIR}/tests/samples/ DESTINATION ${CMAKE_BINARY_DIR}/tes
 #set(CMAKE_C_FLAGS_DEBUG "-g")
 #set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
-add_executable(aes-byte-test aes-byte-test.c)
-target_link_libraries(aes-byte-test PRIVATE aes filecrypt utils)
+add_library(test-utils STATIC test-utils.c)
+target_include_directories(test-utils PUBLIC ${CMAKE_SOURCE_DIR}/tests)
 
-add_executable(aes-file-test aes-file-test.c)
-target_link_libraries(aes-file-test PRIVATE aes filecrypt)
+add_executable(aes-byte-test aes-byte-test.c)
+target_link_libraries(aes-byte-test PRIVATE aes filecrypt utils test-utils)
+
+add_executable(aes-single-file-test aes-single-file-test.c)
+target_link_libraries(aes-single-file-test PRIVATE aes filecrypt test-utils)
+
+add_executable(aes-multi-file-test aes-multi-file-test.c)
+target_link_libraries(aes-multi-file-test PRIVATE aes filecrypt test-utils)
 
 # Need multiple file.pdf(s) for testing threading
 file(COPY_FILE ${CMAKE_SOURCE_DIR}/tests/samples/file.pdf ${CMAKE_BINARY_DIR}/tests/samples/file-2.pdf)
