@@ -25,7 +25,7 @@ static float startTime, endTime;
 static byte state[TEXT_SIZE+16];
 static cipher_ctx * aes;
 
-int testCipherEncrypt128ECB() {
+int testCipherEncrypt128ECB(void * state, void * text, size_t textSize) {
     printf("AES-128 DIRECT AES CIPHER ECB ENCRYPT TEST...\n");
     memcpy(state, any128Plaintext, sizeof(byte) * TEXT_SIZE);
 #if BENCHMARK == 1
