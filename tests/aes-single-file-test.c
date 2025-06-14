@@ -8,7 +8,6 @@
 #include "../include/definitions.h"
 #include "../include/utils.h"
 #include "test-utils.h"
-#include "sample-files.h"
 
 #define VERBOSE 1
 #define BENCHMARK 1
